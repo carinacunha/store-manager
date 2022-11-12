@@ -5,6 +5,7 @@ module.exports = {
     "**/__tests__/*.test.js",
     "**/tests/unit/models/*.test.js",
     "**/tests/unit/services/*.test.js",
+    "**/tests/unit/controllers/*.test.js",
   ],
   "testTimeout": 15000
 }

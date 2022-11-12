@@ -39,4 +39,32 @@ describe('Products Service', function () {
       expect(response).to.deep.equal(execute);
     });
   });
+
+  describe('encontra o produto pelo id', function () {
+    const execute = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      }
+    ]
+
+
+    beforeEach(function () {
+      sinon.stub(productsServices, 'getById').resolves(execute);
+
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+
+    it('com sucesso', async function () {
+
+      const response = await productsServices.getById(1);
+
+      expect(response).to.deep.equal(execute);
+
+    });
+  });
+  
 });
