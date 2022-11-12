@@ -64,12 +64,5 @@ describe('Products Model', function () {
 
     });
     
-    it('com sucesso', async function () {
-
-      const response = await productsModel.findById(1);
-
-      expect(response).to.deep.equal(execute);
-
-    });
   });
 });

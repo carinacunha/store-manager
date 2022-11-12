@@ -6,57 +6,66 @@ const { expect } = require('chai');
 chai.use(sinonChai);
 
 const productsControllers = require('../../../src/controllers/productsController');
-const connection = require('../../../src/models/connection');
 
 describe('Products controller', function () {
+
   describe('Lista todos os produtos', function () {
-    it('Listando todos os produtos', async function () {
-      const res = {};
-      const req = {};
-      const produtos = [
-        {
-          "id": 1,
-          "name": "Martelo de Thor"
-        },
-        {
-          "id": 2,
-          "name": "Traje de encolhimento"
-        }
-      ]
+    const execute = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      },
+      {
+        "id": 2,
+        "name": "Traje de encolhimento"
+      }
+    ]
+    beforeEach(function () {
+      sinon.stub(productsControllers, 'getAllProducts').resolves(execute);
 
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-      sinon
-        .stub(productsControllers, 'getAllProducts')
-        .resolves({ type: null, message: produtos });
-
-      await productsControllers.getAllProducts(req, res);
-
-      expect(res.json).to.have.been.calledOnceWith(produtos);
     });
 
-    it('Buscando um produto pelo id', async function () {
-      const produtosId = [
-        {
-          "id": 1,
-          "name": "Martelo de Thor"
-        },
-      ]
-      const res = {};
-      const req = {
-        params: { id: 2 },
-      };
+    afterEach(function () {
+      sinon.restore();
+    });
 
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-      sinon
-        .stub(productsControllers, 'getProductById')
-        .resolves({ type: 'ERRO', message: 'Product not found' });
+    it('com o tipo array', async function () {
+      const response = await productsControllers.getAllProducts();
+      expect(response).to.be.a('array');
+    });
 
-      await productsControllers.getProductById(req, res);
+    it('com sucesso', async function () {
 
-      expect(res.status).to.have.been.calledOnceWith(404);
-      expect(res.json).to.have.been.calledOnceWith({ message: 'Product not found' });
+      const response = await productsControllers.getAllProducts();
+
+      expect(response).to.deep.equal(execute);
+    });
+  });
+
+  describe('encontra o produto pelo id', function () {
+    const product = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      }
+    ]
+    const id = { id: 1 }
+  
+    beforeEach(function () {
+      sinon.stub(productsControllers, 'getAllProducts').resolves(product);
+
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+
+    it('com sucesso', async function () {
+
+      const response = await productsControllers.getAllProducts(id);
+
+      expect(response).to.deep.equal(product);
+
     });
   });
 
