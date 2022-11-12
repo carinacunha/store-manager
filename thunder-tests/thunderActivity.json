@@ -8,7 +8,21 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-11T22:25:10.848Z",
-    "modified": "2022-11-12T00:07:57.858Z",
+    "modified": "2022-11-12T01:07:33.230Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2414aee4-621c-4329-97e7-2a11522c7d17",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/2",
+    "url": "http://localhost:3000/products/2",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-11-12T01:07:51.974Z",
+    "modified": "2022-11-12T01:07:52.016Z",
     "headers": [],
     "params": [],
     "tests": []
