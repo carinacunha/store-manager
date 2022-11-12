@@ -18,7 +18,6 @@ describe('Products Model', function () {
     ]
     beforeEach(function () {
       sinon.stub(connection, 'execute').resolves([execute]);
-
     });
 
     afterEach(function () {
@@ -39,17 +38,15 @@ describe('Products Model', function () {
   });
 
   describe('Cadastra um novo produto', function () {
+    const execute = { insertId: 4 };
     beforeEach(function () {
-      const execute = { insertId: 1 };
-
       sinon.stub(connection, 'execute').resolves([execute]);
-
     });
 
     afterEach(function () {
       connection.execute.restore();
     });
-    const expect = 4;
+    const expected = 4;
 
     const payload = {
       "name": "ProdutoX"
@@ -62,14 +59,14 @@ describe('Products Model', function () {
   });
 
   describe('Encontra um produto pelo id', function () {
-    before(async function () {
-      const execute = [
-        {
-          "id": 1,
-          "name": "Martelo de Thor"
-        },
-      ];
+    const execute = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      },
+    ];
 
+    before(async function () {
       sinon.stub(connection, 'execute').resolves([execute]);
     });
 

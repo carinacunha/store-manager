@@ -3,6 +3,7 @@ const { expect } = require('chai');
 
 const productsServices = require('../../../src/services/productsServices');
 const connection = require('../../../src/models/connection');
+const { removeExpectHandler } = require('frisby');
 
 describe('Products Service', function () {
   describe('Lista todos os produtos', function () {
@@ -18,7 +19,7 @@ describe('Products Service', function () {
     ]
 
     beforeEach(function () {
-      sinon.stub(productsServices, 'getProducts').resolves(execute);
+      sinon.stub(connection, 'execute').resolves([execute]);
 
     });
 
@@ -40,7 +41,7 @@ describe('Products Service', function () {
     });
   });
 
-  describe('encontra o produto pelo id', function () {
+  describe('Encontra o produto pelo id', function () {
     const execute = [
       {
         "id": 1,
@@ -50,7 +51,7 @@ describe('Products Service', function () {
 
 
     beforeEach(function () {
-      sinon.stub(productsServices, 'getById').resolves(execute);
+      sinon.stub(connection, 'execute').resolves([execute]);
 
     });
 
@@ -58,41 +59,37 @@ describe('Products Service', function () {
       sinon.restore();
     });
 
-    it('com sucesso', async function () {
+    const expected = {
+      "id": 1,
+      "name": "Martelo de Thor"
+    };
 
-      const response = await productsServices.getById(1);
+    const payload = 1
 
-      expect(response).to.deep.equal(execute);
+    it('Encontra o produto com sucesso', async function () {
+      const response = await productsServices.getById(payload);
+
+      expect(response).to.deep.equal(expected);
 
     });
 
-    describe('encontra o produto pelo id', function () {
-      const newProduct =
+    describe('Cadastra um novo produto', function () {
+      afterEach(function () {
+        connection.execute.restore();
+      });
+
+      const payload = "ProdutoX"
+
+      const expected = 
       {
+        "id": 4,
         "name": "ProdutoX"
       }
-      const productInserted = [
-        {
-          "id": 4,
-          "name": "ProdutoX"
-        }
-      ]
+    
 
-      beforeEach(function () {
-        sinon.stub(productsServices, 'insert').resolves(productInserted);
-
-      });
-
-      afterEach(function () {
-        sinon.restore();
-      });
-
-      it('com sucesso', async function () {
-
-        const response = await productsServices.insert(newProduct);
-
-        expect(response).to.deep.equal(productInserted);
-
+      it('cadastra o produto com sucesso', async function () {
+        const response = await productsServices.insertProduct(payload);
+        expect(response).to.equal({ id: 4, payload });
       });
     });
   
