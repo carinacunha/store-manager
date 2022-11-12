@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-11T22:25:10.848Z",
-    "modified": "2022-11-12T03:55:42.646Z",
+    "modified": "2022-11-12T18:00:37.653Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -18,11 +18,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products/2",
-    "url": "http://localhost:3000/products",
+    "url": "http://localhost:3000/products/56",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-12T01:07:51.974Z",
-    "modified": "2022-11-12T03:57:03.315Z",
+    "modified": "2022-11-12T17:42:32.956Z",
     "headers": [],
     "params": [],
     "tests": []

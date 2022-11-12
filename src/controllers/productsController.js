@@ -3,7 +3,7 @@ const productsServices = require('../services/productsServices');
 
 const getAllProducts = async (_req, res) => {
   const products = await productsServices.getProducts();
-  return res.json(products);
+  return res.status(200).json(products);
 };
 
 const getProductById = async (req, res) => {
@@ -11,7 +11,7 @@ const getProductById = async (req, res) => {
   const product = await productsServices.getById(id);
 
   if (product) {
-    return res.json(product);
+    return res.status(200).json(product);
   }
   return res.status(404).json({ message: 'Product not found' });
 };
