@@ -17,7 +17,7 @@ describe('Products Model', function () {
         }
       ]
     beforeEach(function () {
-      sinon.stub(connection, 'execute').resolves(execute);
+      sinon.stub(connection, 'execute').resolves([execute]);
 
     });
 
