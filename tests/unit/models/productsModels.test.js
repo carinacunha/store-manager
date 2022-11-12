@@ -36,7 +36,40 @@ describe('Products Model', function () {
 
       expect(response).to.deep.equal(execute);
     });
+  });
 
-    // connection.execute.restore();
+  describe('encontra o produto pelo id', function () {
+    const execute = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      }
+    ]
+
+    
+    beforeEach(function () {
+      sinon.stub(productsModel, 'findById').resolves(execute);
+
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+
+    it('com sucesso', async function () {
+
+      const response = await productsModel.findById(1);
+
+      expect(response).to.deep.equal(execute);
+
+    });
+    
+    it('com sucesso', async function () {
+
+      const response = await productsModel.findById(1);
+
+      expect(response).to.deep.equal(execute);
+
+    });
   });
 });
