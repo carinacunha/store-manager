@@ -1,5 +1,4 @@
 const productsServices = require('../services/productsServices');
-// const errorMap = require('../utils/errorMap');
 
 const getAllProducts = async (_req, res) => {
   const products = await productsServices.getProducts();
@@ -19,7 +18,7 @@ const getProductById = async (req, res) => {
 const insertNewProduct = async (req, res) => {
   const { name } = req.body;
   const newProduct = await productsServices.insertProduct(name);
-  res.status(201).json(newProduct);
+  return res.status(201).json(newProduct);
 };
 
 module.exports = {
