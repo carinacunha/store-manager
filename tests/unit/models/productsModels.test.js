@@ -6,16 +6,16 @@ const connection = require('../../../src/models/connection');
 
 describe('Products Model', function () {
   describe('Lista todos os produtos', function () {
-      const execute = [
-        {
-          "id": 1,
-          "name": "Martelo de Thor"
-        },
-        {
-          "id": 2,
-          "name": "Traje de encolhimento"
-        }
-      ]
+    const execute = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      },
+      {
+        "id": 2,
+        "name": "Traje de encolhimento"
+      }
+    ]
     beforeEach(function () {
       sinon.stub(connection, 'execute').resolves([execute]);
 
@@ -38,57 +38,56 @@ describe('Products Model', function () {
     });
   });
 
-  describe('encontra o produto pelo id', function () {
-    const execute = [
-      {
-        "id": 1,
-        "name": "Martelo de Thor"
-      }
-    ]
-
-    
+  describe('Cadastra um novo produto', function () {
     beforeEach(function () {
-      sinon.stub(productsModel, 'findById').resolves(execute);
+      const execute = { insertId: 1 };
+
+      sinon.stub(connection, 'execute').resolves([execute]);
 
     });
 
     afterEach(function () {
-      sinon.restore();
+      connection.execute.restore();
     });
+    const expect = 4;
 
-    it('com sucesso', async function () {
+    const payload = {
+      "name": "ProdutoX"
+    }
 
-      const response = await productsModel.findById(1);
-
-      expect(response).to.deep.equal(execute);
-
+    it('cadastra o produto com sucesso', async function () {
+      const response = await productsModel.insert(payload);
+      expect(response).to.equal(expected);
     });
   });
 
-  describe('Cadastra um novo produto', function () {
+  describe('Encontra um produto pelo id', function () {
+    before(async function () {
+      const execute = [
+        {
+          "id": 1,
+          "name": "Martelo de Thor"
+        },
+      ];
 
-    const id = { id: 4 };
-    
-    const product = {
-      "name": "ProdutoX"
-    }
+      sinon.stub(connection, 'execute').resolves([execute]);
+    });
+
+    after(async function () {
+      connection.execute.restore();
+    });
 
     const expected = {
-      "id": 4,
-      "name": "ProdutoX"
-    }
+      "id": 1,
+      "name": "Martelo de Thor"
+    };
 
-    beforeEach(function () {
-      sinon.stub(productsModel, 'insert').resolves(expected);
+    const payload = 1;
 
-    });
-
-    afterEach(function () {
-      sinon.restore();
-    });
     it('com sucesso', async function () {
-      const response = await productsModel.insert(product);
-      expect(response).to.equal(expected);
+      const response = await productsModel.findById(payload);
+
+      expect(response).to.deep.equal(expected);
     });
   });
 });
