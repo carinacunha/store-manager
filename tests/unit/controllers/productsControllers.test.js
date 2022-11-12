@@ -62,6 +62,8 @@ describe('Products controller', function () {
       chai.expect(res.status).to.have.been.calledWith(200);
       chai.expect(res.json).to.have.been.calledWith(getById);
     });
+
+    
     afterEach(function () {
       sinon.restore();
     });
