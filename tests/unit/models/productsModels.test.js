@@ -63,6 +63,32 @@ describe('Products Model', function () {
       expect(response).to.deep.equal(execute);
 
     });
+  });
+
+  describe('Cadastra um novo produto', function () {
+
+    const id = { id: 4 };
     
+    const product = {
+      "name": "ProdutoX"
+    }
+
+    const expected = {
+      "id": 4,
+      "name": "ProdutoX"
+    }
+
+    beforeEach(function () {
+      sinon.stub(productsModel, 'insert').resolves(expected);
+
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+    it('com sucesso', async function () {
+      const response = await productsModel.insert(product);
+      expect(response).to.equal(expected);
+    });
   });
 });

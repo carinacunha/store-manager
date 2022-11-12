@@ -65,6 +65,36 @@ describe('Products Service', function () {
       expect(response).to.deep.equal(execute);
 
     });
-  });
+
+    describe('encontra o produto pelo id', function () {
+      const newProduct =
+      {
+        "name": "ProdutoX"
+      }
+      const productInserted = [
+        {
+          "id": 4,
+          "name": "ProdutoX"
+        }
+      ]
+
+      beforeEach(function () {
+        sinon.stub(productsServices, 'insert').resolves(productInserted);
+
+      });
+
+      afterEach(function () {
+        sinon.restore();
+      });
+
+      it('com sucesso', async function () {
+
+        const response = await productsServices.insert(newProduct);
+
+        expect(response).to.deep.equal(productInserted);
+
+      });
+    });
   
+  });
 });
