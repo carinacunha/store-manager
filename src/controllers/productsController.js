@@ -11,14 +11,15 @@ const getProductById = async (req, res) => {
 
   if (product) {
     res.status(200).json(product);
+  } else {
+    res.status(404).json({ message: 'Product not found' });
   }
-  res.status(404).json({ message: 'Product not found' });
 };
 
 const insertNewProduct = async (req, res) => {
   const { name } = req.body;
   const newProduct = await productsServices.insertProduct(name);
-  return res.status(201).json(newProduct);
+  res.status(201).json(newProduct);
 };
 
 module.exports = {
