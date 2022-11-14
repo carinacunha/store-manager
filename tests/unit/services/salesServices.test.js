@@ -1,9 +1,14 @@
 const sinon = require('sinon');
+const chai = require('chai');
+
 const { expect } = require('chai');
+
 const salesServices = require('../../../src/services/salesServices');
-const salesMocks = require('./mocks/salesServices.mocks');
 const salesModels = require('../../../src/models/salesModels');
-const productsModels = require('../../../src/models/productsModel');
+
+function mockModel(method, result, model = salesModel) {
+  return sinon.stub(model, method).resolves(result);
+}
 
 describe('Sales Services', function () {
   describe('Cadastra uma venda', function () {
@@ -11,37 +16,11 @@ describe('Sales Services', function () {
       sinon.restore();
     });
 
-    it('Deverá cadastrar uma venda sem o campo productId', async function () {
-      sinon.stub(salesModels, 'insert').resolves('"productId" is required');
-      
-      const response = await salesServices.insertSales([salesMocks.createSalesWithoutId]);
-      expect(response.message).to.equal('"productId" is required');
-    });
-    
-    // it('Deverá cadastrar uma venda sem o campo quantity', async function () {
-    //   const response = await salesServices.insertSales(salesMocks.createSalesWithoutQuatity);
-    //   expect(response.message).to.equal('"quantity" is required');
-    // });
-    
-    // it('Deverá cadastrar uma venda com quantity = 0', async function () { 
-    //   const response = await salesServices.insertSales(salesMocks.createSalesInvalidQuatity);
-    //   expect(response.message).to.equal('"quantity" must be greater than or equal to 1');
-    // });
+    it('Deverá cadastrar uma venda com sucesso', async function () {
 
-    // it('Deverá cadastrar uma venda com id inexistente em req com único item', async function () { 
-    //   const response = await salesServices.insertSales(salesMocks.createSalesInvalidIdSingle);
-    //   expect(response.message).to.equal('Product not found');
-    // });
-
-    // it('Deverá cadastrar uma venda com id inexistente em req com múltiplos itens', async function () {
-    //   const response = await salesServices.insertSales(salesMocks.createSalesInvalidIdMulti);
-    //   expect(response.message).to.equal('Product not found');
-    // });
-    
-    it('Deverá cadastrar uma venda com sucesso', async function () { 
       const sales = [{ "productId": 1, "quantity": 1 }];
       const responseSucess = {
-        "id": 3,
+        "id": 1,
         "itemsSold": [
           {
             "productId": 1,
@@ -50,13 +29,14 @@ describe('Sales Services', function () {
         ]
       }
 
-      sinon.stub(salesModels, 'insert').resolves([responseSucess]);
-    
+
+
+      sinon.stub(salesModels, 'insert').resolves(1);
+      const mock = mockModel('checkIds', ['1'], salesModels);
+      
       const response = await salesServices.insertSales(sales);
       expect(response).to.be.deep.equal(responseSucess);
+      
     });
-   
   });
-
-
 });
