@@ -1,11 +1,12 @@
 const salesServices = require('../services/salesServices');
-const mapError = require('../utils/errorMap');
 
 const createNewSales = async (req, res) => {
-  const { productId, quantity } = req.body;
-  const { type, message } = await salesServices.insertSales(productId, quantity);
-  if (type) return res.status(mapError(type)).json({ message });
-  res.status(201).json(message);
+  try {
+    const saleInfo = await salesServices.insertSales(req.body);
+    return res.status(201).json(saleInfo);
+  } catch (err) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
 };
 
 module.exports = {

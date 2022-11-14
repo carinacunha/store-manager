@@ -21,7 +21,6 @@ const insert = async (sale) => {
   const [results] = await connection.execute(
     `SELECT * FROM StoreManager.products WHERE id IN (${ids.join(', ')})`,
   );
-
   return results;
 };
 
