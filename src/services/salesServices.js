@@ -2,7 +2,7 @@ const salesModels = require('../models/salesModels');
 const productsModels = require('../models/productsModel');
 
 const insertSales = async (sale) => {
-  const idsProducts = sale.map(({ productId }) => productId).filter((id) => id);
+  const idsProducts = await sale.map(({ productId }) => productId).filter((id) => id);
   console.log(idsProducts);
 
   // const idsArray = await idsProducts.map((id) => id).map((id) => productsModels.findById(id));
