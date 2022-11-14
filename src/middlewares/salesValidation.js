@@ -2,8 +2,7 @@ const validation = (req, res, next) => {
   const testProductId = req.body.map((sale) => sale.productId === undefined); 
   const testQuantity = req.body.map((sale) => sale.quantity === undefined); 
   const testQuantityNeg = req.body.map((sale) => sale.quantity <= 0); 
-  console.log(testQuantity);
-
+  
   if (testProductId.some((v) => v === true)) { 
     return res.status(400).json({ message: '"productId" is required' });
   }
