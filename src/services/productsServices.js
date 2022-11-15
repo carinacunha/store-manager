@@ -27,11 +27,19 @@ const updateProd = async (id, name) => {
   await productsModels.update(id, name);
 };
 
+const deleteProd = async (id) => {
+  const product = await productsModels.findById(id);
+  console.log(product);
+  if (product.length === 0) {
+    throw new Error();
+  }
+  await productsModels.deleteById(id);
+};
+
 module.exports = {
   getProducts,
   getById,
   insertProduct,
   updateProd,
+  deleteProd,
 };
-
-// updateProd(1, 'Sucuri');
