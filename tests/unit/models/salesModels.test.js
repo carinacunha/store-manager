@@ -92,9 +92,6 @@ describe('Sales Model', function () {
 
       const response = await salesModels.findAll(idSale);
       expect(response).to.be.equal(result);
-      
-
-
-    })
+    });
   });
 });
