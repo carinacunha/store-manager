@@ -29,14 +29,11 @@ describe('Sales Services', function () {
         ]
       }
 
-
-
       sinon.stub(salesModels, 'insert').resolves(1);
       const mock = mockModel('checkIds', ['1'], salesModels);
       
       const response = await salesServices.insertSales(sales);
       expect(response).to.be.deep.equal(responseSucess);
-      
     });
   });
 });
