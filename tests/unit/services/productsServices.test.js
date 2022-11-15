@@ -72,13 +72,12 @@ describe('Products Service', function () {
   });
 
   describe('Atualiza um produto', function () {
-    const product = {
+    const productById = {
       "id": 1,
-      "name": "Martelo do Batman"
+      "name": "Martelo de Thor"
     };
-
-    const idIns = 1;
-    const name = "Machado do Batman"
+    
+    const infos = [1, 'Machado do Batman'];
 
     const expected = {
       "id": 1,
@@ -86,11 +85,12 @@ describe('Products Service', function () {
     };
 
     it('Deverá atualizar um produto com sucesso', async () => {
-      mockModel('findById', ['1'], productsModels);
-      sinon.stub(productsModels, 'update').resolves(expect);
+      const mockFind = sinon.stub(productsModels, 'findById').resolves(productById);
+      const mockUpdate = sinon.stub(productsModels, 'update').resolves(expected);
 
-      const response = await productsServices.updateProd(idIns, name);
-      expect(response).to.deep.equal(expected);
+      const response = await productsServices.updateProd(...infos);
+
+      expect(mockFind).to.have.been.calledWith(1);
     });
   });   
 });

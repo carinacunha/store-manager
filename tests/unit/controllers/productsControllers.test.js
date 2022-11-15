@@ -9,6 +9,10 @@ const productsControllers = require('../../../src/controllers/productsController
 const productsServices = require('../../../src/services/productsServices')
 
 describe('Products controller', function () {
+  afterEach(function () {
+    sinon.restore();
+  });
+
   describe('Lista todos os produtos', function() {
     it('Listando todos os produtos', async function () {
       const req = {};
@@ -34,22 +38,18 @@ describe('Products controller', function () {
       chai.expect(res.status).to.have.been.calledWith(200);
       chai.expect(res.json).to.have.been.calledWith(getProducts);
     });
-    afterEach(function () {
-      sinon.restore();
-    });
   });
 
   describe('Busca produto pelo Id', function () {
     it('Buscando produto', async function () {
-      
       const req = {
         params: { id: 1 },
-      }
+      };
 
       const getById = {
-          "id": 1,
-          "name": "Martelo de Thor"
-        }
+        "id": 1,
+        "name": "Martelo de Thor"
+      };
 
       const res = {};
       res.status = sinon.stub().returns(res);
@@ -61,11 +61,6 @@ describe('Products controller', function () {
 
       chai.expect(res.status).to.have.been.calledWith(200);
       chai.expect(res.json).to.have.been.calledWith(getById);
-    });
-
-    
-    afterEach(function () {
-      sinon.restore();
     });
   });
 });
