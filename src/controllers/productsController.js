@@ -9,7 +9,6 @@ const getProductById = async (req, res) => {
   const { id } = req.params;
   
   const product = await productsServices.getById(id);
-  // console.log(product);
   if (product) {
     res.status(200).json(product);
   } else {
@@ -40,8 +39,3 @@ module.exports = {
   insertNewProduct,
   updateProductById,
 };
-
-// const infos = {
-//   name: 'Martelo do Batman',
-// };
-// updateProductById(infos);

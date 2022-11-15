@@ -14,7 +14,7 @@ describe('Products controller', function () {
   });
 
   describe('Lista todos os produtos', function() {
-    it('Listando todos os produtos', async function () {
+    it('Deverá listar todos os produtos', async function () {
       const req = {};
       const getProducts = [
         {
@@ -40,8 +40,8 @@ describe('Products controller', function () {
     });
   });
 
-  describe('Busca produto pelo Id', function () {
-    it('Buscando produto', async function () {
+  describe('Busca o produto pelo Id', function () {
+    it('Deverá buscar o produto pelo id', async function () {
       const req = {
         params: { id: 1 },
       };
@@ -58,6 +58,36 @@ describe('Products controller', function () {
       sinon.stub(productsServices, 'getById').resolves(getById);
 
       await productsControllers.getProductById(req, res);
+
+      chai.expect(res.status).to.have.been.calledWith(200);
+      chai.expect(res.json).to.have.been.calledWith(getById);
+    });
+  });
+
+  describe('Atualiza o produtro pelo id', function () {
+    it('Deverá atualizar o produto pelo id', async function () {
+      const req = {
+        params: {
+          id: 1
+        },
+          body: {
+            name: 'Martelo de Thor'
+        },
+      };
+
+      const getById = {
+        "id": 1,
+        "name": "Martelo de Thor"
+      };
+
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon.stub(productsServices, 'getById').resolves(getById);
+      sinon.stub(productsServices, 'updateProd').resolves()
+
+      await productsControllers.updateProductById(req, res);
 
       chai.expect(res.status).to.have.been.calledWith(200);
       chai.expect(res.json).to.have.been.calledWith(getById);
