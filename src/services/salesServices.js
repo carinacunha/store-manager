@@ -32,4 +32,5 @@ module.exports = {
   insertSales,
   getSales,
   getById,
+  
 };

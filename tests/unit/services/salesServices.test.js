@@ -8,7 +8,7 @@ const salesModels = require('../../../src/models/salesModels');
 
 function mockModel(method, result, model = salesModel) {
   return sinon.stub(model, method).resolves(result);
-}
+};
 
 describe('Sales Services', function () {
   describe('Cadastra uma venda', function () {
@@ -30,7 +30,7 @@ describe('Sales Services', function () {
       };
 
       sinon.stub(salesModels, 'insert').resolves(1);
-      const mock = mockModel('checkIds', ['1'], salesModels);
+      mockModel('checkIds', ['1'], salesModels);
       
       const response = await salesServices.insertSales(sales);
       expect(response).to.be.deep.equal(responseSucess);

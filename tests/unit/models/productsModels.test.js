@@ -30,7 +30,7 @@ describe('Products Model', function () {
     });
   });
 
-  describe('DEveria encontrar um produto pelo id', function () {
+  describe('Deveria encontrar um produto pelo id', function () {
     const execute = [
       {
         "id": 1,
@@ -38,10 +38,10 @@ describe('Products Model', function () {
       },
     ];
 
-    const expected = {
+    const expected = [{
       "id": 1,
       "name": "Martelo de Thor"
-    };
+    }];
 
     const payload = 1;
 
@@ -61,7 +61,7 @@ describe('Products Model', function () {
       "name": "ProdutoX"
     }
 
-    it('cadastra o produto com sucesso', async function () {
+    it('Cadastra o produto com sucesso', async function () {
       sinon.stub(connection, 'execute').resolves([execute]);
       const response = await productsModel.insert(payload);
       expect(response).to.equal(expected);

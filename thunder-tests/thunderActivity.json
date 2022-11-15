@@ -18,11 +18,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products/2",
-    "url": "http://localhost:3000/products/2",
+    "url": "http://localhost:3000/products/20",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-12T01:07:51.974Z",
-    "modified": "2022-11-13T16:12:02.818Z",
+    "modified": "2022-11-15T20:30:31.035Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -84,11 +84,11 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/sales/2",
-    "url": "http://localhost:3000/sales/2",
+    "url": "http://localhost:3000/products/1",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-11-15T13:15:15.166Z",
-    "modified": "2022-11-15T14:15:44.722Z",
+    "modified": "2022-11-15T20:22:54.293Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -175,6 +175,120 @@
     "modified": "2022-11-15T18:15:52.058Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3d639e4d-79b4-4ba5-abc5-ee10ed30ccbc",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/2",
+    "url": "http://localhost:3000/sales/2",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:00:09.308Z",
+    "modified": "2022-11-15T19:26:50.068Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "2f770d3b-f505-4310-ae4f-95708d9ffb30",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/2",
+    "url": "http://localhost:3000/products/2",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:36:39.312Z",
+    "modified": "2022-11-15T20:27:58.549Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do capeta\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3ea53f74-12d9-4e18-81ce-be5c14cbd3cd",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/20",
+    "url": "http://localhost:3000/products/20",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:38:36.102Z",
+    "modified": "2022-11-15T19:38:36.294Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "820e0a8f-0490-4a5c-bdb1-5b380018dab8",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/1",
+    "url": "http://localhost:3000/products/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:44:41.295Z",
+    "modified": "2022-11-15T20:00:13.184Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Ace\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e166c285-4da3-48aa-ad1f-ad819ab7b307",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/100",
+    "url": "http://localhost:3000/products/100",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:47:35.216Z",
+    "modified": "2022-11-15T20:30:42.660Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do capeta\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1ad42710-930f-41ff-bdb6-a3709c0e839f",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/90",
+    "url": "http://localhost:3000/products/90",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-11-15T19:51:01.201Z",
+    "modified": "2022-11-15T19:51:01.452Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Ace\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

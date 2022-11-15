@@ -6,7 +6,7 @@ const getProducts = async () => {
 };
 
 const getById = async (id) => {
-  const product = await productsModels.findById(id);
+  const [product] = await productsModels.findById(id);
   return product;
 };
 
@@ -18,8 +18,20 @@ const insertProduct = async (name) => {
   };
 };
 
+const updateProd = async (id, name) => {
+  const product = await productsModels.findById(id);
+  console.log(product);
+  if (product.length === 0) {
+    throw new Error();
+  } 
+  await productsModels.update(id, name);
+};
+
 module.exports = {
   getProducts,
   getById,
   insertProduct,
+  updateProd,
 };
+
+// updateProd(1, 'Sucuri');
