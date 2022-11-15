@@ -22,9 +22,33 @@ const insert = async (sale) => {
     `SELECT * FROM StoreManager.products WHERE id IN (${ids.join(', ')})`,
   );
   return results;
+ };
+
+const findAll = async () => {
+  const [result] = await connection.execute(
+    `SELECT s.id AS saleId, s.date, p.product_id AS productId, p.quantity 
+      FROM StoreManager.sales AS s
+      INNER JOIN StoreManager.sales_products as p ON s.id = p.sale_id;`,
+  );
+  return result;
+};
+
+const findById = async (id) => {
+  const [result] = await connection.execute(
+    `SELECT s.date, p.product_id AS productId, p.quantity 
+      FROM StoreManager.sales AS s
+      INNER JOIN StoreManager.sales_products as p ON s.id = p.sale_id
+      WHERE s.id = ?
+      ORDER BY s.id ASC, p.product_id ASC`,
+    
+      [id],
+  );
+  return result;
 };
 
 module.exports = {
   insert,
   checkIds,
+  findAll,
+  findById,
 };

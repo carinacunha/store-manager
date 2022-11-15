@@ -7,7 +7,6 @@ const insertSales = async (sale) => {
   if (idExist.length !== idsProducts.length) {
     throw new Error();
   } 
-
   const idSale = await salesModels.insert(sale);
 
   return {
@@ -16,6 +15,21 @@ const insertSales = async (sale) => {
   };
 };
 
+const getSales = async () => {
+  const sales = await salesModels.findAll();
+  return sales;
+};
+
+const getById = async (id) => {
+  const sale = await salesModels.findById(id);
+  if (sale.length === 0) {
+    throw new Error();
+  }
+  return sale;
+};
+
 module.exports = {
   insertSales,
+  getSales,
+  getById,
 };

@@ -9,6 +9,23 @@ const createNewSales = async (req, res) => {
   }
 };
 
+const getAllSales = async (_req, res) => {
+  const sales = await salesServices.getSales();
+  return res.status(200).json(sales);
+};
+
+const getSaleById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const sale = await salesServices.getById(id);
+    return res.status(200).json(sale);
+  } catch (err) {
+    return res.status(404).json({ message: 'Sale not found' });
+  }
+};
+
 module.exports = {
   createNewSales,
+  getAllSales,
+  getSaleById,
 };
