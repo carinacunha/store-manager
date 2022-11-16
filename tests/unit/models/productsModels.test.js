@@ -5,6 +5,10 @@ const productsModel = require('../../../src/models/productsModel');
 const connection = require('../../../src/models/connection');
 
 describe('Products Model', function () {
+  afterEach(function () {
+    sinon.restore();
+  });
+
   describe('Lista todos os produtos', function () {
     const execute = [
       {
@@ -61,13 +65,30 @@ describe('Products Model', function () {
       "name": "ProdutoX"
     }
 
-    it('Cadastra o produto com sucesso', async function () {
+    it('Deveria cadastrar o produto com sucesso', async function () {
       sinon.stub(connection, 'execute').resolves([execute]);
       const response = await productsModel.insert(payload);
       expect(response).to.equal(expected);
     });
   });
-  afterEach(function () {
-    sinon.restore();
+  
+  describe('Atualiza um produto', function () {
+    const infos = [1, 'Machado do Batman'];
+
+    it('Deverá atualizar um produto', async function () {
+      sinon.stub(connection, 'execute').resolves();
+      const response = await productsModel.update(infos);
+      expect(response).to.equal();
+    });
+  });
+
+  describe('Deleta um produto', function () {
+    const id = 1;
+
+    it('Deverá deletar um produto', async function () {
+      sinon.stub(connection, 'execute').resolves();
+      const response = await productsModel.deleteById(id);
+      expect(response).to.equal();
+    });
   });
 });

@@ -20,7 +20,6 @@ const insertProduct = async (name) => {
 
 const updateProd = async (id, name) => {
   const product = await productsModels.findById(id);
-  console.log(product);
   if (product.length === 0) {
     throw new Error();
   } 
@@ -29,7 +28,6 @@ const updateProd = async (id, name) => {
 
 const deleteProd = async (id) => {
   const product = await productsModels.findById(id);
-  console.log(product);
   if (product.length === 0) {
     throw new Error();
   }

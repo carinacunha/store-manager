@@ -44,5 +44,3 @@ module.exports = {
   update,
   deleteById,
 };
-
-// deleteById(1);

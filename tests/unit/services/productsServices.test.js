@@ -38,12 +38,10 @@ describe('Products Service', function () {
       "id": 1,
       "name": "Martelo de Thor"
     };
-
     const expected = {
       "id": 1,
       "name": "Martelo de Thor"
     };
-
     const payload = 1;
 
     it('Deveria encontrar o produto com sucesso', async function () {
@@ -71,26 +69,35 @@ describe('Products Service', function () {
     });
   });
 
-  describe('Atualiza um produto', function () {
+  describe('Atualiza o produto', function () {
     const productById = {
       "id": 1,
       "name": "Martelo de Thor"
     };
-    
     const infos = [1, 'Machado do Batman'];
 
-    const expected = {
-      "id": 1,
-      "name": "Machado do Batman"
-    };
+    it('Deverá atualizar o produto com sucesso', async function () {
+      sinon.stub(productsModels, 'findById').resolves(productById);
+      const mockUp = sinon.stub(productsModels, 'update').resolves();
 
-    it('Deverá atualizar um produto com sucesso', async () => {
-      const mockFind = sinon.stub(productsModels, 'findById').resolves(productById);
-      const mockUpdate = sinon.stub(productsModels, 'update').resolves(expected);
-
-      const response = await productsServices.updateProd(...infos);
-
-      expect(mockFind).to.have.been.calledWith(1);
+      const response = await productsServices.updateProd(infos);
+      expect(mockUp).to.have.been.calledWith(infos);
+      expect(response).to.equal();
     });
-  });   
+  });
+  
+  describe('Deleta um produto', function () {
+    const productById = {
+      "id": 1,
+      "name": "Martelo de Thor"
+    };
+    const id = 1;
+
+    it('Deverá deletar um produto', async function () {
+      sinon.stub(productsModels, 'findById').resolves(productById);
+      sinon.stub(productsModels, 'deleteById').resolves();
+      const response = await productsServices.deleteProd(id);
+      expect(response).to.equal();
+    });
+  });
 });
