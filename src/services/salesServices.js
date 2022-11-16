@@ -28,9 +28,18 @@ const getById = async (id) => {
   return sale;
 };
 
+const deleteProd = async (id) => {
+  const sale = await salesModels.findById(id);
+  console.log(sale);
+  if (sale.length === 0) {
+    throw new Error();
+  }
+  await salesModels.deleteById(id);
+};
+
 module.exports = {
   insertSales,
   getSales,
   getById,
-  
+  deleteProd,
 };
