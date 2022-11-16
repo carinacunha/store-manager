@@ -13,9 +13,21 @@ describe('Sales Model', function () {
   afterEach(() => {
     sinon.restore();
   });
-  describe('Cadastra uma nova venda', function () {
+  // describe('Cadastra uma nova venda', function () {
 
-    const sales = [
+    
+
+  //   const id = { insertId: 4}
+      
+  //   it('Deverá cadastra uma venda', async function () {
+  //     sinon.stub(connection, 'execute').resolves([id]);
+
+  //     const response = await insert();
+  //     expect(response).to.equal(4);
+  //   });
+
+  describe('Cadastra uma nova venda', function () {
+    const payload = [
       {
         productId: 1,
         quantity: 1,
@@ -25,16 +37,18 @@ describe('Sales Model', function () {
         quantity: 5,
       },
     ];
+    const execute = { insertId: 4 };
+    const expected = 4;
+   
 
-    const id = { insertId: 4}
-      
-    it('Deverá cadastra uma venda', async function () {
-      sinon.stub(connection, 'execute').resolves([id]);
-
-      const response = await insert();
-      expect(response).to.equal(4);
+    it('Deveria cadastrar o produto com sucesso', async function () {
+      sinon.stub(connection, 'execute').resolves([execute]);
+      const response = await salesModels.insert(payload);
+      expect(response).to.equal(expected);
     });
+  });
 
+  describe('Busca a venda de acordo con o id dos produtos', function () {
     it('Deverá encontrar os produtos cadastrados pelo id', async () => {
       const id = [1, 2];
       const result = { id: 1, name: 'Martelo de Thor' };
@@ -44,7 +58,9 @@ describe('Sales Model', function () {
 
       expect(response).to.be.equal(result);
     });
+  });
 
+  describe('Lista todas as vendas', function () {
     it('Deverá listar todas as vendas', async () => {
       const sales = [
         {
@@ -59,8 +75,10 @@ describe('Sales Model', function () {
 
       const response = await salesModels.findAll();
       expect(response).to.be.equal(sales);
-    })
+    });
+    });
 
+  describe('Busca a venda pelo id', function () {
     it('Deverá buscar a venda pelo id', async () => {
       const sales = [
         {
@@ -94,4 +112,37 @@ describe('Sales Model', function () {
       expect(response).to.be.equal(result);
     });
   });
+
+  describe('Deveria encontrar uma venda pelo id do produto', function () {
+    const expected = [
+      {
+        "saleId": 1,
+        "date": "2021-09-09T04:54:29.000Z",
+        "productId": 1,
+        "quantity": 2
+      }
+    ];
+
+    const payload = 1;
+
+    it('com sucesso', async function () {
+      sinon.stub(connection, 'execute').resolves([expected]);
+      const response = await salesModels.findById(payload);
+
+      expect(response).to.deep.equal(expected);
+    });
+  });
+
+  describe('Deleta uma venda', function () {
+    const id = 1;
+
+    it('Deverá deletar um produto', async function () {
+      sinon.stub(connection, 'execute').resolves();
+      const response = await salesModels.deleteById(id);
+      expect(response).to.equal();
+    });
+  });
+
 });
+
+ 

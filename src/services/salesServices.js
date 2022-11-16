@@ -30,7 +30,6 @@ const getById = async (id) => {
 
 const deleteProd = async (id) => {
   const sale = await salesModels.findById(id);
-  console.log(sale);
   if (sale.length === 0) {
     throw new Error();
   }

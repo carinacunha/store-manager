@@ -62,22 +62,45 @@ describe('Products controller', function () {
       const req = {
         params: { id: 1 }
       };
-      
+
       const sale = {
-          "saleId": 1,
-          "date": "2021-09-09T04:54:29.000Z",
-          "productId": 1,
-          "quantity": 2
-        };
+        "saleId": 1,
+        "date": "2021-09-09T04:54:29.000Z",
+        "productId": 1,
+        "quantity": 2
+      };
 
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
       sinon.stub(salesServices, 'getById').resolves(sale);
 
-      await salesControllers.getAllSales(req, res);
+      await salesControllers.getSaleById(req, res);
 
-      expect(res.status).to.have.been.calledWith(200)
-      // expect(res.json).to.have.been.calledWith(sale);
+      chai.expect(res.status).to.have.been.calledWith(200);
+      chai.expect(res.json).to.have.been.calledWith(sale);
+    });
+  });
+
+  describe('Deleta uma venda', function () {
+    const req = {
+      params: {
+        id: 1
+      }
+    };
+    const getById = {
+      "id": 1,
+      "name": "Martelo de Thor"
+    };
+    const res = {};
+
+    it('Deverá deleta uma venda', async function () {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(salesServices, 'getById').resolves(getById);
+      sinon.stub(salesServices, 'deleteProd').resolves();
+
+      await salesControllers.deleteProductById(req, res);
+      chai.expect(res.status).to.have.been.calledWith(204);
     });
   });
 });

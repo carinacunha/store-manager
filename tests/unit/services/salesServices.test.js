@@ -85,4 +85,19 @@ describe('Sales Services', function () {
       expect(response).to.be.equal(result);
     });
   });
+
+  describe('Deleta uma venda', function () {
+    const productById = {
+      "id": 1,
+      "name": "Martelo de Thor"
+    };
+    const id = 1;
+
+    it('Deverá deletar uma venda', async function () {
+      sinon.stub(salesModels, 'findById').resolves(productById);
+      sinon.stub(salesModels, 'deleteById').resolves();
+      const response = await salesServices.deleteProd(id);
+      expect(response).to.equal();
+    });
+  });
 });
