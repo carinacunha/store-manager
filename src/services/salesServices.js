@@ -28,7 +28,16 @@ const getById = async (id) => {
   return sale;
 };
 
-const deleteProd = async (id) => {
+const updateSales = async (id, sales) => {
+  const sale = await salesModels.findById(id);
+  // console.log(sale);
+  if (sale.length === 0) {
+    throw new Error();
+  }
+  await salesModels.update(id, sales);
+};
+
+const deleteSale = async (id) => {
   const sale = await salesModels.findById(id);
   if (sale.length === 0) {
     throw new Error();
@@ -40,5 +49,19 @@ module.exports = {
   insertSales,
   getSales,
   getById,
-  deleteProd,
+  deleteSale,
+  updateSales,
 };
+
+// const sales = [
+//     {
+//       productId: 1,
+//       quantity: 10,
+//     },
+//     {
+//       productId: 2,
+//       quantity: 950,
+//     },
+// ];
+  
+// updateSales(1, sales);

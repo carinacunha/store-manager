@@ -16,6 +16,12 @@ const getProductById = async (req, res) => {
   }
 };
 
+const searchProducts = async (req, res) => {
+  const name = req.query.q;
+  const result = await productsServices.getProductByName(name);
+  return res.status(200).json(result);
+};
+
 const insertNewProduct = async (req, res) => {
   const { name } = req.body;
   const newProduct = await productsServices.insertProduct(name);
@@ -49,4 +55,5 @@ module.exports = {
   insertNewProduct,
   updateProductById,
   deleteProductById,
+  searchProducts,
 };

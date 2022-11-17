@@ -4,6 +4,7 @@ const router = express.Router();
 const productsController = require('../controllers/productsController');
 const { nameValidation } = require('../middlewares/productsValidation');
 
+router.get('/search', productsController.searchProducts);
 router.get('/', productsController.getAllProducts);
 router.get('/:id', productsController.getProductById);
 router.post('/', nameValidation, productsController.insertNewProduct);

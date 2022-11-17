@@ -10,6 +10,15 @@ const getById = async (id) => {
   return product;
 };
 
+const getProductByName = async (query) => {
+  if (query === undefined) {
+    const allProducts = await getProducts();
+    return allProducts;
+  } 
+    const products = await productsModels.findProductByName(query);
+    return products;
+};
+
 const insertProduct = async (name) => {
   const id = await productsModels.insert(name);
   return {
@@ -40,4 +49,5 @@ module.exports = {
   insertProduct,
   updateProd,
   deleteProd,
+  getProductByName,
 };

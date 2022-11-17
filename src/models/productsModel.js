@@ -15,6 +15,16 @@ const findById = async (id) => {
   return result;
 };
 
+const findProductByName = async (query) => {
+  const q = `%${query}%`;
+
+  const [result] = await connection.execute(
+    'SELECT * FROM StoreManager.products WHERE name LIKE ?',
+    [q],
+  );
+  return result;
+};
+
 const insert = async (name) => {
   const [{ insertId }] = await connection.execute(
     'INSERT INTO StoreManager.products (name) VALUE (?)',
@@ -43,4 +53,5 @@ module.exports = {
   insert,
   update,
   deleteById,
+  findProductByName,
 };

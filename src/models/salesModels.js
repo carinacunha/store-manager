@@ -37,12 +37,26 @@ const findById = async (id) => {
   const [result] = await connection.execute(
     `SELECT s.date, p.product_id AS productId, p.quantity 
       FROM StoreManager.sales AS s
-      INNER JOIN StoreManager.sales_products as p ON s.id = p.sale_id
+      INNER JOIN StoreManager.sales_products AS p ON s.id = p.sale_id
       WHERE s.id = ?
       ORDER BY s.id ASC, p.product_id ASC`,
-    
       [id],
   );
+  return result;
+};
+
+const update = async (id, sales) => {
+  await sales.map(({ productId, quantity }) => (
+    connection.execute(
+      `UPDATE StoreManager.sales_products
+      SET quantity = ? WHERE sale_id = ? AND product_id = ?`,
+      [quantity, id, productId],
+    )));
+  const result = {
+    saleId: id,
+    itemsUpdated: sales,
+  };
+  
   return result;
 };
 
@@ -59,4 +73,5 @@ module.exports = {
   findAll,
   findById,
   deleteById,
+  update,
 };
