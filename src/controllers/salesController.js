@@ -29,10 +29,10 @@ const updateSalesById = async (req, res) => {
   const sales = req.body;
   try {
     const result = await salesServices.updateSales(id, sales);
-    console.log(result);
+    // console.log(result);
     return res.status(200).json(result);
   } catch (err) {
-    return res.status(404).json({ message: 'Sale not found' });
+    return res.status(404).json({ message: err.message });
   }
 };
 

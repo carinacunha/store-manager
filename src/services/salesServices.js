@@ -1,4 +1,5 @@
 const salesModels = require('../models/salesModels');
+const productsModels = require('../models/productsModel');
 
 const insertSales = async (sale) => {
   const idsProducts = await sale.map(({ productId }) => productId);
@@ -28,13 +29,20 @@ const getById = async (id) => {
   return sale;
 };
 
-const updateSales = async (id, sales) => {
-  const sale = await salesModels.findById(id);
-  // console.log(sale);
-  if (sale.length === 0) {
-    throw new Error();
+const updateSales = async (idSale, sales) => {
+  const saleExist = await salesModels.findById(idSale);
+  const productsExist = sales.map(({ productId }) => productsModels.findById(productId));
+  const promise = await Promise.all(productsExist);
+  const lengthPromise = promise.some((elem) => !elem.length);
+  
+  if (saleExist.length === 0) {
+    throw new Error('Sale not found');
   }
-  await salesModels.update(id, sales);
+  if (lengthPromise) {
+    throw new Error('Product not found');
+  } 
+  const result = await salesModels.update(idSale, sales);
+  return result;
 };
 
 const deleteSale = async (id) => {
@@ -52,16 +60,3 @@ module.exports = {
   deleteSale,
   updateSales,
 };
-
-// const sales = [
-//     {
-//       productId: 1,
-//       quantity: 10,
-//     },
-//     {
-//       productId: 2,
-//       quantity: 950,
-//     },
-// ];
-  
-// updateSales(1, sales);

@@ -187,16 +187,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products/2",
-    "url": "http://localhost:3000/products/2",
+    "url": "http://localhost:3000/products/1",
     "method": "PUT",
     "sortNum": 0,
     "created": "2022-11-15T19:36:39.312Z",
-    "modified": "2022-11-15T20:27:58.549Z",
+    "modified": "2022-11-17T18:25:56.391Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"Martelo do capeta\"\n}",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []
@@ -352,16 +352,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/sales/20",
-    "url": "http://localhost:3000/sales/20",
+    "url": "http://localhost:3000/sales/1",
     "method": "PUT",
     "sortNum": 0,
     "created": "2022-11-16T22:26:01.562Z",
-    "modified": "2022-11-16T22:26:01.875Z",
+    "modified": "2022-11-17T22:37:14.926Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 50\n  },\n   {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []
