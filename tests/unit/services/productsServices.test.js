@@ -13,6 +13,39 @@ describe('Products Service', function () {
     sinon.restore();
   });
 
+  describe('Busca o produto pelo nome', function () {
+    const name = 'martelo';
+    const expected = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      }
+    ];
+
+    const all = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor",
+      },
+      {
+        "id": 2,
+        "name": "Traje de encolhimento",
+      }
+    ];
+
+    it('Deverá buscar o produto pela query', async function () {
+      sinon.stub(productsModels, 'findProductByName').resolves(expected);
+      const response = await productsServices.getProductByName(name);
+      expect(response).to.equal(expected);
+    });
+
+    // it('Deverá buscar todos os produtos quando não existir query', async function () {
+    //   sinon.stub(productsModels, 'findProductByName').resolves(all);
+    //   const response = await productsServices.getProductByName();
+    //   expect(response).to.equal(all);
+    // });
+  });
+
   describe('Lista todos os produtos', function () {
     const findAll = [
       {

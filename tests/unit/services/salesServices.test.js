@@ -96,7 +96,7 @@ describe('Sales Services', function () {
     it('Deverá deletar uma venda', async function () {
       sinon.stub(salesModels, 'findById').resolves(productById);
       sinon.stub(salesModels, 'deleteById').resolves();
-      const response = await salesServices.deleteProd(id);
+      const response = await salesServices.deleteSale(id);
       expect(response).to.equal();
     });
   });

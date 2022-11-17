@@ -97,7 +97,7 @@ describe('Products controller', function () {
       res.status = sinon.stub().returns(res);
       res.json = sinon.stub().returns();
       sinon.stub(salesServices, 'getById').resolves(getById);
-      sinon.stub(salesServices, 'deleteSales').resolves();
+      sinon.stub(salesServices, 'deleteSale').resolves();
 
       await salesControllers.deleteProductById(req, res);
       chai.expect(res.status).to.have.been.calledWith(204);

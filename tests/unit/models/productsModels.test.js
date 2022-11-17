@@ -9,6 +9,39 @@ describe('Products Model', function () {
     sinon.restore();
   });
 
+  describe('Busca o produto pelo nome', function () {
+    const name = 'martelo';
+    const expected = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor"
+      }
+    ];
+
+    const all = [
+      {
+        "id": 1,
+        "name": "Martelo de Thor",
+      },
+      {
+        "id": 2,
+        "name": "Traje de encolhimento",
+      }
+    ];
+
+    it('Deverá buscar o produto pela query', async function () {
+      sinon.stub(connection, 'execute').resolves([expected]);
+      const response = await productsModel.findProductByName(name);
+      expect(response).to.equal(expected);
+    });
+
+    it('Deverá buscar todos os produtos quando não existir query', async function () {
+      sinon.stub(connection, 'execute').resolves([all]);
+      const response = await productsModel.findProductByName();
+      expect(response).to.equal(all);
+    });
+  });
+
   describe('Lista todos os produtos', function () {
     const execute = [
       {
@@ -58,7 +91,6 @@ describe('Products Model', function () {
   });
 
   describe('Cadastra um novo produto', function () {
-
     const execute = { insertId: 4 };
     const expected = 4;
     const payload = {
@@ -91,4 +123,6 @@ describe('Products Model', function () {
       expect(response).to.equal();
     });
   });
+
+  
 });
