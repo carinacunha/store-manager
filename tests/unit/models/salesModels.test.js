@@ -13,18 +13,6 @@ describe('Sales Model', function () {
   afterEach(() => {
     sinon.restore();
   });
-  // describe('Cadastra uma nova venda', function () {
-
-    
-
-  //   const id = { insertId: 4}
-      
-  //   it('Deverá cadastra uma venda', async function () {
-  //     sinon.stub(connection, 'execute').resolves([id]);
-
-  //     const response = await insert();
-  //     expect(response).to.equal(4);
-  //   });
 
   describe('Cadastra uma nova venda', function () {
     const payload = [
@@ -143,6 +131,38 @@ describe('Sales Model', function () {
     });
   });
 
+  describe('Atualiza uma venda', function () {
+    const expected = {
+      saleId: 1,
+      itemsUpdated: [
+        {
+          productId: 1,
+          quantity: 1,
+        },
+        {
+          productId: 2,
+          quantity: 5,
+        },
+      ],
+    };
+
+    const infos = [
+      {
+        productId: 1,
+        quantity: 1,
+      },
+      {
+        productId: 2,
+        quantity: 5,
+      },
+    ];
+
+    it('Deverá atualizar um venda com sucesso', async function () {
+      sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+      const response = await salesModels.update(1, infos);
+      expect(response).to.deep.equal(expected);
+    });
+  });
 });
 
  

@@ -6,6 +6,7 @@ chai.use(require('sinon-chai'));
 
 const salesControllers = require('../../../src/controllers/salesController');
 const salesServices = require('../../../src/services/salesServices');
+const salesModels = require('../../../src/models/salesModels');
 
 chai.use(sinonChai);
 
@@ -101,6 +102,49 @@ describe('Products controller', function () {
 
       await salesControllers.deleteProductById(req, res);
       chai.expect(res.status).to.have.been.calledWith(204);
+    });
+  });
+
+  describe('Atualiza uma venda', function () {
+    const infos = [
+      {
+        productId: 1,
+        quantity: 1,
+      }
+    ];
+    const res = {};
+    const reqOk = {
+      params: { id: 1 },
+      body: infos,
+    }
+    const expected = {
+      saleId: 1,
+      itemsUpdated: [
+        {
+          productId: 1,
+          quantity: 1,
+        }
+      ],
+    };
+    const infosProductNotExist = [
+      {
+        productId: 100,
+        quantity: 1,
+      }
+    ];
+
+    const reqProductNotexist = {
+      params: { id: 1 },
+      body: infosProductNotExist,
+    }
+
+    it('Deverá atualizar um venda com sucesso', async function () {
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(salesServices, 'updateSales').resolves(expect);
+
+      await salesControllers.updateSalesById(reqOk, res);
+      chai.expect(res.status).to.have.been.calledWith(200);
     });
   });
 });

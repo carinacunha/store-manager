@@ -221,25 +221,6 @@
     "tests": []
   },
   {
-    "_id": "820e0a8f-0490-4a5c-bdb1-5b380018dab8",
-    "colId": "history",
-    "containerId": "",
-    "name": "http://localhost:3000/products/1",
-    "url": "http://localhost:3000/products/1",
-    "method": "PUT",
-    "sortNum": 0,
-    "created": "2022-11-15T19:44:41.295Z",
-    "modified": "2022-11-15T20:00:13.184Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"Martelo do Ace\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "e166c285-4da3-48aa-ad1f-ad819ab7b307",
     "colId": "history",
     "containerId": "",
@@ -356,7 +337,7 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2022-11-16T22:26:01.562Z",
-    "modified": "2022-11-17T22:37:14.926Z",
+    "modified": "2022-11-18T17:37:44.780Z",
     "headers": [],
     "params": [],
     "body": {

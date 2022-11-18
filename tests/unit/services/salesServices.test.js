@@ -100,4 +100,23 @@ describe('Sales Services', function () {
       expect(response).to.equal();
     });
   });
+
+  describe('Atualiza uma venda', function () {
+  
+    const expected = {
+      saleId: 1,
+      itemsUpdated: [
+        {
+          productId: 1,
+          quantity: 1,
+        }
+      ],
+    };
+    const infos = [
+      {
+        productId: 100,
+        quantity: 1,
+      }
+    ];
+  });
 });
