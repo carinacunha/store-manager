@@ -123,6 +123,4 @@ describe('Products Model', function () {
       expect(response).to.equal();
     });
   });
-
-  
 });

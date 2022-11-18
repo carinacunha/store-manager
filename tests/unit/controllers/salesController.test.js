@@ -6,7 +6,6 @@ chai.use(require('sinon-chai'));
 
 const salesControllers = require('../../../src/controllers/salesController');
 const salesServices = require('../../../src/services/salesServices');
-const salesModels = require('../../../src/models/salesModels');
 
 chai.use(sinonChai);
 

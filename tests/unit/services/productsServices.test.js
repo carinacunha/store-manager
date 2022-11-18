@@ -38,12 +38,6 @@ describe('Products Service', function () {
       const response = await productsServices.getProductByName(name);
       expect(response).to.equal(expected);
     });
-
-    // it('Deverá buscar todos os produtos quando não existir query', async function () {
-    //   sinon.stub(productsModels, 'findProductByName').resolves(all);
-    //   const response = await productsServices.getProductByName();
-    //   expect(response).to.equal(all);
-    // });
   });
 
   describe('Lista todos os produtos', function () {
@@ -111,10 +105,9 @@ describe('Products Service', function () {
 
     it('Deverá atualizar o produto com sucesso', async function () {
       sinon.stub(productsModels, 'findById').resolves(productById);
-      const mockUp = sinon.stub(productsModels, 'update').resolves();
+      sinon.stub(productsModels, 'update').resolves();
 
       const response = await productsServices.updateProd(infos);
-      // expect(mockUp).to.have.been.calledWith(infos);
       expect(response).to.equal();
     });
   });
