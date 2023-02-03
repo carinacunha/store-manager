@@ -1,6 +1,6 @@
 # :sparkles: Store Manager #
 
-In this project was developed an API to manage sales in dropshipping format and in which it is possible to create, view, delete and update products and sales.. This API was made in Node.js following software architecture model MSC. 
+In this project was developed an API to manage sales in dropshipping format and in which it is possible to create, view, delete and update products and sales. This API was made in Node.js following software architecture model MSC. 
 
 ## 🎲 ER and Entity Diagram ##
 The relational database used in the project has its relationships and entities represented in the figure below. Endpoints were developed to connect to the database following REST principles.
