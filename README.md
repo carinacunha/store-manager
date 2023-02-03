@@ -27,4 +27,4 @@ This project can be run locally or using docker. Whichever resource you choose, 
 4. Install the dependencies: npm install
 5. Rename the file .env.example to .env and set the environment variables
 
-:point_right: This project was developed during the Full Stack Web Development course at Trybe.
+**✨ This project was developed during the Full Stack Web Development course at Trybe.**
