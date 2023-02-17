@@ -15,7 +15,7 @@ This project can be run locally or using docker. Whichever resource you choose, 
 2. Navigate to the root of the repository: ```cd store-manager```
 3. Make sure you have installed docker version 1.29 or higher
 4. Run the node and db services: ```docker-compose up -d --build```
-5. Create an interactive terminal from the container: ```docker exec -it blogs_api bash```
+5. Create an interactive terminal from the container: ```docker exec -it store-manager bash```
 6. Install the dependencies: ```npm install```
 
 ### :computer: Local ###
